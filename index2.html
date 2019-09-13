@@ -5,13 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <style>
+    .transRed{
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+    #transBlue{
+      height: 100px;
+      width: 100px;
+      border: 1px solid blue;
+    }
+  </style>
 
 </head>
 <body>
   <div id="app">
     {{date}}<br>
     {{date | formatDate}}
+    <hr>
+    <br>
+    <span v-text="banana"></span><br>
+    <span v-html="banana"></span><br>
+    <div v-bind:class="className"></div>
+    <div v-bind:id="idName"></div>
   </div>
   
 
@@ -26,6 +45,9 @@
       el:'#app',
       data:{
         date:new Date(),
+        banana:'<span style="color:red;">香蕉</span>',
+        className:'transRed',
+        idName:'transBlue'
       },
       mounted:function() {
         var _this =this//this代表的就是vue实例
@@ -39,7 +61,7 @@
         }
       },
       filters:{
-        //这里的value就是需要过滤的数据
+        //这里的value就是需要过滤的数据，就是双括号里面的date，vue会帮你传进去，这个value是一定要有的
         formatDate:function(value) {
           //字符串转化为date类型
           var date = new Date(value)
