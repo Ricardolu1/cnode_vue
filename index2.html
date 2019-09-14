@@ -31,6 +31,8 @@
     <span v-html="banana"></span><br>
     <div v-bind:class="className"></div>
     <div v-bind:id="idName"></div>
+    <button @click="count">{{countNum}}</button>
+    <button @click="count">{{countNum}}</button>
   </div>
   
 
@@ -47,7 +49,8 @@
         date:new Date(),
         banana:'<span style="color:red;">香蕉</span>',
         className:'transRed',
-        idName:'transBlue'
+        idName:'transBlue',
+        countNum:0,
       },
       mounted:function() {
         var _this =this//this代表的就是vue实例
@@ -72,11 +75,34 @@
           var min = plusDate(date.getMinutes())
           var sec = plusDate(date.getSeconds())
           return year + '.'+month+'.'+day+' / '+hour+':'+min+':'+sec
-        },
-
+        }
+      },
+      methods:{
+        count:function() {
+          this.countNum+=1  //这个this指向的是vue实例
+        }
       }
     })
   
+
+
+
+    new Vue({
+      el:'#app',
+      data:{
+        msg:'hello'
+      }
+
+    })
+
+
+
+
+
+
+
+
+
   </script>
 </body>
 </html>
