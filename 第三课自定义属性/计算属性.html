@@ -7,7 +7,17 @@
   <title>计算属性</title>
 </head>
 <body>
-  <div id="demo">{{text}}</div>
+  <div id="demo">
+    {{text}} <br>
+    {{text.split(',').reverse().join(',')}} <br>
+    下面是使用计算属性得到数字           
+    {{reverseText}}
+
+
+
+
+
+  </div>
 
 
 
@@ -20,7 +30,12 @@
         text:'123,456,789',
 
       },
-
+      //定义计算属性
+      computed:{
+        reverseText:function() {
+          return this.text.split(',').reverse().join(',')
+        },
+      }
 
 
       
