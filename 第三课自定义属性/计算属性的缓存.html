@@ -10,17 +10,31 @@
 <body>
 
   <div id="app">
+    {{text}} <br>
+    {{reverseText}} <br>
     计算属性的缓存：<br>
-    {{now}}
+    {{now}} <br>
+    通过methods拿到时间戳: <br>
+    {{thisTime()}}
   </div>
   <script>
     var app =new Vue({
       el:'#app',
       data:{
+        text:'123,456,789',
+        msg:'nihao'
 
       },
       computed:{
+        reverseText:function() {
+          return this.text.split(',').reverse().join(',')
+        },
         now:function() {
+          return Date.now()
+        }
+      },
+      methods:{
+        thisTime:function() {
           return Date.now()
         }
       }
