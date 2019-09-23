@@ -12,10 +12,9 @@
 </head>
 
 <body>
-  
+  绑定内联样式:<br>
   <div id="app">
-    数组和对象混用,数组的第一个成员是对象，数组的键对应类名，值是布尔,第二个成员是数组成员它是永远存在的，你只要把数组成员写上去
-    <div :class="[{active:isActive},errorClass]"></div>
+    <div :style:="{'color:color,'fontsize':fontsize }"></div>
   </div>
   
 
@@ -26,8 +25,7 @@
     var app = new Vue({
       el:'#app',
       data:{
-        isActive:false,
-        errorClass:'error',
+        color:''
 
       },
 
