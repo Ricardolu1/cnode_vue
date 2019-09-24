@@ -14,7 +14,13 @@
 <body>
   绑定内联样式:<br>
   <div id="app">
-    <div :style:="{'color:color,'fontsize':fontsize }"></div>
+    <div :style="{'color':color2,'fontSize':fontsize }">
+      大家看看我吧
+    </div>
+
+    <div :style="[styleA,styleB]">
+      你们好啊
+    </div>
   </div>
   
 
@@ -25,7 +31,17 @@
     var app = new Vue({
       el:'#app',
       data:{
-        color:''
+        color2:'red',
+        fontsize:'20px',
+        styleA:{
+          color:'blue',
+          fontSize:'38px'
+
+        },
+        styleB:{
+          background :'black',
+          border: '2px solid yellow',
+        }
 
       },
 
