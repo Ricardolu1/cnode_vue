@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>v-for</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    v-for的用法:v-for一定是写在要遍历的元素上 v-for后面接等号,等号后面的内容类似于item in items,这种形式<br>
+    （1）遍历多个对象 <br>
+    学号vue.js的方法是:
+    <ul>
+      <li v-for="vueMth in vueMethods">{{vueMth.name}}</li>
+    </ul>
+
+
+  </div>
+
+
+
+  <script>
+    var app =new Vue({
+      el:'#app',
+      data:{
+        vueMethods:[
+          {name:'多思考'},
+          {name:'多练习'},
+          {name:'听老张讲课'}
+
+        ]
+
+
+      },
+      methods:{
+
+        
+      },
+
+
+
+
+
+    })
+  </script>
+</body>
+</html>

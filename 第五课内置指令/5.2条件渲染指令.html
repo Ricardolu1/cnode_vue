@@ -5,25 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>条件渲染</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
   <div id="app">
     v-if后面接的是等号:等号后面的内容必须是布尔值<br>
     v-if的基本用法
-    <p v-if="6<3">{{apple}} </p>
+    <p v-if="6===3">{{apple}} </p>
     <p v-else-if="9>5">{{pineapple}} </p>
     <p v-else>{{banana}} </p>
     <hr>
-    v-if的示例用法：
+    v-if的示例用法：对于不想复用的元素，加入key即可
     需求:点击按钮用户名输入框和密码输入框切换
     <div v-if="type==='name'">
-      用户名：<input type="text" placeholder="请输入用户名">
+      用户名：<input type="text" placeholder="请输入用户名" key="name">
     </div>
     <div v-else>
         密码：<input type="text" placeholder="请输入用密码">
     </div>
-    <button @click="toggleType">点我</button>
+    <button @click="toggleType">点我切换</button>
+    <hr>
+    v-show的用法：显现与否取决于布尔值
+    <p v-show="9>a">我被渲染出来了</p>
+    v-if和v-show的比较
+    
+
 
   </div>
 
@@ -37,6 +43,7 @@
         banana:'banana',
         pineapple:'pineapple',
         type:'name',
+        a:2,
 
 
       },
