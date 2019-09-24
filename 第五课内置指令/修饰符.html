@@ -4,12 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>数组更新</title>
+  <title>修饰符</title>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
   <div id="app">
-
+    <hr>
+    stop用法: <br>
+    <div @click.self="divClick" style="height: 100px; width: 100px; background:red; ">
+      <button @click="btnClick">点我</button>
+    </div>
+    <hr>
+    prevent的用法：
+    每次提交表单都会重载页面
+    <form action="" @submit.prevent="hangle">
+      <button type="submit">提交表单</button>
+    </form>
+    <hr>
+    once: {{count1}} <br>
+    <button @click="onceMethod">执行无限次</button>
+    <button @click.once="onceMethod">执行无限次</button>
   </div>
 
 
@@ -21,9 +35,24 @@
     var app = new Vue({
       el:'#app',
       data:{
-
+        count:0, \
+        count1:0,
       },
+      methods:{
+        divClick:function() {
+          alert('div被点击了')
+        },
+        btnClick:function() {
+          alert('btn被点击了')
+        },
+        hangle:function() {
+          alert('我不重载页面也不刷新了')
+        },
+        onceMethod:function() {
+          this.count1+=1
+        }
 
+      }
     })
   </script>
 </body>
