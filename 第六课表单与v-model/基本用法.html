@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基本用法</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+  <div id="app">
+    v-model的用法: <br>
+    <hr>
+    input和texyarea的用法
+    <input type="text" v-model="value"> <br>
+    {{value}}
+    <br>
+    多行文本框 <br>
+    <textarea name="" id="" cols="30" rows="2" v-model="textArea"></textarea><br>
+    {{textArea}}
+    <hr>
+    单选框的用法：<br>
+    单个选框：用v-bind绑定一个布尔值 
+    <input type="radio" name="" :checked="oneradio" @click="reverse">
+    <br>
+    多个单选框:
+      狗蛋:<input name="checks" value="狗蛋" type="radio" v-model="checkname">
+      猫蛋:<input name="checks" value="猫蛋" type="radio" v-model="checkname">
+      翠花:<input name="checks" value="翠花" type="radio" v-model="checkname"> <br>
+      现在选中的是---------------{{checkname}}
+      <hr>
+      复选框：<br>
+      单个复选框:可以用v-model也可以用v-bind
+      <input type="checkbox" name="" :checked="oneradio2" @click="reverse2">
+      <input type="checkbox" name="" :checked="oneradio2" @click="reverse2">
+  </div>
+
+
+
+
+
+  <script>
+    var app = new Vue({
+      el:'#app',
+      data:{
+        value:'aa',
+        textArea:'',
+        oneradio:false,
+        oneradio2:false,
+        checkname:''
+      },
+      methods:{
+        reverse:function() {
+          this.oneradio=!this.oneradio
+        },
+        reverse2:function() {
+          this.oneradio2=!this.oneradio2
+        }
+      },
+    })
+  </script>
+</body>
+</html>
