@@ -24,6 +24,10 @@
     once: {{count1}} <br>
     <button @click="onceMethod">执行无限次</button>
     <button @click.once="onceMethod">执行无限次</button>
+    <hr>
+    监听键盘事件:
+    <br>
+    <input type="text" @keyup.13="submit">
   </div>
 
 
@@ -35,7 +39,7 @@
     var app = new Vue({
       el:'#app',
       data:{
-        count:0, \
+        count:0,
         count1:0,
       },
       methods:{
@@ -50,6 +54,9 @@
         },
         onceMethod:function() {
           this.count1+=1
+        },
+        submit:function() {
+          alert('您按下了enter键')
         }
 
       }
