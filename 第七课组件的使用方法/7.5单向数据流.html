@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单向数据流</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #app{
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <diV id="app">
+    <my-component msg="我是父组件传递的数据"></my-component>
+    <hr>
+    <!-- 通过input的中输入的数据，直接改变的div的宽度 -->
+    <!-- 这时候的width仅仅只是一个数据，还没有加px -->
+    <input type="text" v-model="width">
+    <wdith-component :width="width"></wdith-component>
+  </diV>
+
+
+<script>
+
+  Vue.component('my-component',{
+    props:['msg'],
+    template:'<div>我是一个组件<br>{{count}}</div>',
+    data:function() {
+      return {
+        //props中的值可以通过this。xxx来直接获取
+        count:this.msg
+      }
+    }
+    
+  })
+
+  Vue.component('wdith-component',{
+    props:['width'],
+    template:'<div :style="style"></div>',
+    data:function() {
+      return {
+
+      }
+    },
+    computed:{
+      style:function() {
+        //直接就是style了
+        return {
+          width:this.width+'px',
+          background:'red',
+          height:'30px'
+        }
+      }
+    }
+    
+  })
+
+  var app = new Vue({
+    el:'#app',
+    data:{
+      width:0,
+    }
+
+  })
+</script>
+
+
+
+</body>
+</html>
