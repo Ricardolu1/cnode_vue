@@ -21,7 +21,10 @@
     <hr>
     单选框的用法：<br>
     单个选框：用v-bind绑定一个布尔值 
-    <input type="radio" name="" :checked="oneradio" @click="reverse">
+    <input type="radio"  :checked="oneradio"> <br>
+    单个选框：用v-model绑定一个布尔值 
+    <!-- oneradio在data中设置为了true，但是在页面中，单选框没有被选上，注意 -->
+    <input type="radio" v-model="oneradio">
     <br>
     多个单选框:
       狗蛋:<input name="checks" value="狗蛋" type="radio" v-model="checkname">
@@ -30,9 +33,13 @@
       现在选中的是---------------{{checkname}}
       <hr>
       复选框：<br>
-      单个复选框:可以用v-model也可以用v-bind
-      <input type="checkbox" name="" :checked="oneradio2" @click="reverse2">
-      <input type="checkbox" name="" :checked="oneradio2" @click="reverse2">
+      单个复选框:用v-bind
+      <input type="checkbox" :checked="oneradio2"> <br>
+      单个复选框:用v-model
+      <input type="checkbox" v-model="oneradio2">
+      <hr>
+      多个复选框:
+      <input type="text">
   </div>
 
 
@@ -45,8 +52,8 @@
       data:{
         value:'aa',
         textArea:'',
-        oneradio:false,
-        oneradio2:false,
+        oneradio:true,
+        oneradio2:true,
         checkname:''
       },
       methods:{
