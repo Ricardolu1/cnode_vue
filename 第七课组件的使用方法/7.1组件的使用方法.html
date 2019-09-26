@@ -8,11 +8,23 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-  <div id="app">
+  <div id="app" style="border: 1px solid green;margin:10px 0" >
     <my-component></my-component>
+    <app-component></app-component>
 
+
+    <button @click="plus">{{count}}</button> <button @click="plus">{{count}}</button>
+    <hr>
+    <btn-component></btn-component>
+    <btn-component></btn-component>
   </div>
 
+
+
+  <div id="bpp" style="border: 1px solid red;">
+    <my-component></my-component>
+  </div>
+  
 
 
 
@@ -26,6 +38,38 @@
     })
     var app = new Vue({
       el:'#app',
+      data:{
+        count:0
+
+      },
+      components:{
+        'app-component':{
+          template:'<div>我是app局部注册的一个组件</div>'
+        },
+        'btn-component':{
+          template:'<button @click="count+=1">{{count}}</button>',
+          data:function() {
+            return {
+              count:0
+            }
+          }
+        }
+      },
+      methods:{
+        plus:function() {
+          this.count+=1
+        }
+      },
+
+
+
+
+
+
+    })
+
+    var bpp = new Vue({
+      el:'#bpp',
       data:{
 
       }
