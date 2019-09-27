@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>组件编译的作用域</title>
+  <title>作用域插槽</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <style>
     #app {
@@ -21,19 +21,21 @@
 </head>
 <body>
   <div id="app">
-    <my-component v-show="childShow"></my-componrnt>
-  </div>
+      <my-component>
+        <template slot="abc" slot-scope="prop">
+          {{prop.text}}
+        </template>
+      </my-component>
+  </div> 
+
 
 
   <script>
     Vue.component('my-component',{
-      template:`<div>我是一个子组件</div>`,
-      data:function() {
-        return {
-          message:'我是子组件的内容',
-          childShow:true
-        }
-      }
+      template:`<div>
+                  <slot text="我是来自子组件的数据" name="abc">
+                  </slot>
+                </div>`,
     })
 
 
@@ -41,8 +43,7 @@
     var app= new Vue({
       el:'#app',
       data:{
-        message:'我是父组件的内容',
-        childShow:false
+
       }
     })
   </script>
