@@ -26,7 +26,7 @@
     </my-componrnt>
     <hr>
     <name-component>
-      <h3 slot="header">我是标题</h3>
+      <h3 slot="header"><span>我是标题</span></h3>
       <p>我是正文内容</p>
       <p>正文内容有两段</p>
       <p slot="footer">我是底部信息</p>
@@ -62,7 +62,9 @@
          var header = this.$slots.header
          console.log(header)
          var text = header[0].elm.innerText
+         var html = header[0].elm.innerHTML
          console.log(text)
+         console.log(html)
       }         
     })
 
