@@ -1,78 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>数据验证</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <style>
-    #app{
-      border: 2px solid black;
-      width: 600px;
-      height: 300px;
-      font-weight: 700;
-      font-size: 16px;
-      padding: 3px;
-      margin:0 auto;
-      margin-top:100px
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>数据验证</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      #app {
+        border: 2px solid black;
+        width: 600px;
+        height: 300px;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 3px;
+        margin: 0 auto;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
   <div id="app">
     <my-component my-msg="lala"></my-component>
-    <hr>
-    <type-component :a="a" :b="b" :c="c" :d="d"></type-component>
+    <hr />
+    <type-component :a="a" :b="b" :c="c" :d="d" :f="f" :g="g"></type-component>
   </div>
 
-
   <script>
-    Vue.component('my-component',{
-      props:['my-msg'],
-      template:'<div>{{myMsg}} </div>',
-      data:function() {
+    Vue.component("my-component", {
+      props: ["my-msg"],
+      template: "<div>{{myMsg}} </div>",
+      data: function() {
         return {
-          abc:this.myMsg
+          abc: this.myMsg
         }
       }
-
     })
 
-    Vue.component('type-component',{
-      props:{
-        a:Number,
-        b:[Number,String],
+    Vue.component("type-component", {
+      props: {
+        a: Number,
+        b: [Number, String],
         //必须是布尔类型，默认是true，有type，required，default
-        c:{
-          type:Boolean,
-          defalut:true
+        c: {
+          type: Boolean,
+          default: true
         },
-        d:{
-          type:Number,
-          required:true
-        }
+        d: {
+          type: Number,
+          required: true
+        },
+        e: {
+          type: Array,
+          default: function() {
+            return [666]
+          }
+        },
+        f:{
+          validator:function(value) {
+            return value > 10
+          }
+        },
+        g:{
+          type:Function
 
+        }
       },
-      template:'<div>{{a}}----{{b}}--{{c}}--{{d}} </div>',
-      data:function() {
+      template: "<div>{{a}}----{{b}}--{{c}}--{{d}}--{{e}}--{{f}}--{{g}} </div>",
+      data: function() {
         return {
-          abc:this.myMsg
+          abc: this.myMsg
         }
       }
-
     })
 
-    var app=new Vue({
-      el:'#app',
-      data:{
-        a:1,
-        b:'666',
-        c:true,
-        d:1315
+    var app = new Vue({
+      el: "#app",
+      data: {
+        a: 1,
+        b: "666",
+        c: true,
+        d: 1315,
+        e: [],
+        f:88,
+        g:console.log('')
       }
     })
   </script>
-<body>
-  
-</body>
+  <body></body>
 </html>
