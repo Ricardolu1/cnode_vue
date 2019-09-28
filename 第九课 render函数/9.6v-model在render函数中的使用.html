@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #app {
+      border: 2px solid black;
+      width: 600px;
+      height: 300px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 3px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <my-component :name="name" @input="showName"></my-component><br>
+    {{name}}
+  </div> 
+
+
+
+  <script>
+  //需求上面是一个input框，下面使我们要渲染的一个name，在input输入什么，就在下面显示什么   
+    Vue.component('my-component',{
+      render:function(creatElement) {
+        var self =this
+        return creatElement('input',{
+          domProps:{
+            value:self.name
+          },
+          on:{//这里面写的是事件
+            input:function(event) {
+              self.$emit('input',event.target.value)
+            }
+          }
+
+        })
+      },
+      props:['name']
+    })
+    
+
+    var app= new Vue({
+      el:'#app',
+      data:{
+        name:'JACK'
+      },
+      methods:{
+        showName:function(value) {//这里的value是子组件传过来的值
+          this.name=value
+        }
+      },
+    })
+  </script>
+</body>
+</html>
