@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #app {
+      border: 2px solid black;
+      width: 600px;
+      height: 300px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 3px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <my-component value="haha"></my-component>
+  </div> 
+
+
+
+  <script>
+  //如果我们想拿到从外界传递过来的数据，只能通过context
+  //this.text===context.props.text
+  //this.$slots.default===context.child
+    Vue.component('my-component',{
+      functional:true,//表示当前的vue实例没状态，无实例
+      render:function(creatElement,context) {
+        var a = this
+        return creatElement('button',{
+          on:{
+            click:function() {
+              debugger
+              console.log(context)
+              console.log(context.parent)
+              // alert(context.parent.msg)
+              // alert(context.props.value)
+              alert(this.value)//这里的this是window
+            }
+          }
+        },'点击我学习context')
+      },
+      prop:['value']
+    })
+   
+
+    var app= new Vue({
+      el:'#app',
+      data:{
+        msg:'我只父组件的内容'
+      },
+    })
+  </script>
+</body>
+</html>
