@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    #app {
+      border: 2px solid black;
+      width: 600px;
+      height: 300px;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 3px;
+      margin: 0 auto;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button @click="switchShow">点击切换美女</button>{{show}}
+    <my-component :show="show">
+
+    </my-component>
+  </div> 
+
+
+
+  <script>
+  //需求点击按钮切换美女图片
+    Vue.component('my-component',{
+      props:['show'],
+      render:function(creatElement) {
+        var imgsrc
+        switch(this.show){
+          case 0:
+            imgsrc='../img/1.jpg'
+            break
+          case 1:
+            imgsrc='../img/2.jpg'
+            break
+          case 2:
+            imgsrc='../img/3.jpg'
+            break
+          case 3:
+            imgsrc='../img/4.jpg'
+            break
+          case 4:
+            imgsrc='../img/5.jpg'
+            break
+          case 5:
+            imgsrc='../img/6.jpg'
+            break
+          case 6:
+            imgsrc='../img/7.jpg'
+            break
+        }
+
+        return creatElement('img',{
+          attrs:{
+            src:imgsrc
+          },
+          style:{
+            width:'600px',
+            height:'400px'
+          }
+        })
+      }
+
+    })
+   
+
+    var app= new Vue({
+      el:'#app',
+      data:{
+        show:0
+      },
+      methods:{
+       switchShow:function() {
+         if(this.show<=5){
+           this.show=this.show+1
+         }else{
+           this.show=-1
+           this.show=this.show+1
+         }
+
+       }
+      },
+
+    })
+  </script>
+</body>
+</html>
